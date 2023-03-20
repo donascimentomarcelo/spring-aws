@@ -46,7 +46,7 @@
 			<version>2.0.1</version>
 		</dependency>
 
-
+		<!--MYSQL Dep-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
