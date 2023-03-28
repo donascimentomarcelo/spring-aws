@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://54.221.112.27:3306/springaws
+    url: jdbc:mysql://springaws1.cccvecappc4c.us-east-1.rds.amazonaws.com:3306/springaws1?useSSL=false&allowPublicKeyRetrieval=true
     username: crane
-    password: 1234
+    password: 12345678
     driverClassName: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -18,4 +18,4 @@ spring:
 
 spring-aws:
   profile:
-    message: Prod environment running...
+    message: RDS environment running...
