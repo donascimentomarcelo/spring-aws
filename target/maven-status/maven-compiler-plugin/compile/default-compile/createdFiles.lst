@@ -1,0 +1,17 @@
+br\com\springaws\bootstrap\profilesysout\RdsProfileSysOut.class
+br\com\springaws\repositories\ProductCategoryRepository.class
+br\com\springaws\services\jms\JmsTextMessageServiceImpl.class
+br\com\springaws\services\ProductServiceImpl.class
+br\com\springaws\bootstrap\profilesysout\ProdProfileSysOut.class
+br\com\springaws\SpringAwsApplication.class
+br\com\springaws\repositories\ProductRepository.class
+br\com\springaws\domain\Author.class
+br\com\springaws\bootstrap\profilesysout\DevProfileSysOut.class
+br\com\springaws\bootstrap\DevOpsBootstrap.class
+br\com\springaws\repositories\AuthorRepository.class
+br\com\springaws\config\JMSConfig.class
+br\com\springaws\services\jms\JmsTextMessageListener.class
+br\com\springaws\domain\ProductCategory.class
+br\com\springaws\domain\Product.class
+br\com\springaws\services\jms\JmsTextMessageService.class
+br\com\springaws\services\ProductService.class
