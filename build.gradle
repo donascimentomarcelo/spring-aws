@@ -2,11 +2,13 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.10'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'com.palantir.docker' version '0.34.0'
+	id 'com.palantir.docker-run' version '0.34.0'
 }
 
 group = 'br.com'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
@@ -22,4 +24,19 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+String imageName = "donascimentomarcelo/spring-aws:$version"
+
+docker {
+	name imageName
+	files "build/libs/${bootJar.archiveFileName.get()}"
+	buildArgs([JAR_FILE: bootJar.archiveFileName.get()])
+}
+
+dockerRun {
+	name project.name
+	image imageName
+	ports '8080:8080'
+	clean true
 }
