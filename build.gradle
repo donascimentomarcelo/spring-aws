@@ -4,6 +4,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id 'com.palantir.docker' version '0.34.0'
 	id 'com.palantir.docker-run' version '0.34.0'
+	id 'jp.classmethod.aws.reboot.cloudformation' version '0.45'
 }
 
 group = 'br.com'
@@ -26,7 +27,8 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-String imageName = "donascimentomarcelo/spring-aws:$version"
+String dockerHubUsernameProperty = findProperty('dockerHubUsername') ?: 'donascimentomarcelo'
+String imageName = "${dockerHubUsernameProperty}/spring-aws:$version"
 
 docker {
 	name imageName
@@ -39,4 +41,15 @@ dockerRun {
 	image imageName
 	ports '8080:8080'
 	clean true
+}
+
+cloudFormation {
+	stackName "$project.name-stack"
+	stackParams([
+			SubnetID: findProperty('subnetId') ?: '',
+			ServiceName: project.name,
+			ServiceVersion: project.version,
+			DockerHubUsername: dockerHubUsernameProperty
+	])
+	templateFile project.file("ecs.yml")
 }
