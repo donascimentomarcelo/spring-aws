@@ -60,7 +60,7 @@ Resources:
       Comment: Weighted RR for my API.
       RecordSets:
         - Name: api.cranelifestyle.fun.
-          Type: ALIAS
+          Type: A
           TTL: '900'
           SetIdentifier: API
           Weight: '140'
