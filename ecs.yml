@@ -53,3 +53,14 @@ Resources:
             - !Ref SubnetID
           SecurityGroups:
             - !GetAtt ServiceSecurityGroup.GroupId
+  DNSOneAlias:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: cranelifestyle.fun.
+      Comment: Weighted RR for my API.
+      RecordSets:
+        - Name: api.cranelifestyle.fun.
+          Type: ALIAS
+          TTL: '900'
+          SetIdentifier: API
+          Weight: '140'
