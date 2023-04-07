@@ -106,6 +106,18 @@ Resources:
         - Type: forward
           TargetGroupArn: !Ref TargetGroup
 
+  DNSRoute53:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: cranelifestyle.fun.
+      Comment: Zone apex alias targeted to LoadBalancer.
+      RecordSets:
+        - Name: api.cranelifestyle.fun.
+          Type: A
+          AliasTarget:
+            HostedZoneId: !GetAtt 'LoadBalancer.CanonicalHostedZoneID'
+            DNSName: !GetAtt 'LoadBalancer.DNSName'
+
   # We define a default target group here, as this is a mandatory Parameters
   # when creating an Application Load Balancer Listener. This is not used, instead
   # a target group is created per-service in each service template (../services/*)
