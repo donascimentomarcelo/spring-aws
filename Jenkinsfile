@@ -9,11 +9,11 @@ pipeline {
                 sh './gradlew assemble'
             }
         }
-//         stage('Test') {
-//             steps {
-//                 sh './gradlew test'
-//             }
-//         }
+        stage('Unit Test') {
+            steps {
+                sh './gradlew test'
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 sh './gradlew docker'
