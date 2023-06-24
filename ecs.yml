@@ -196,7 +196,7 @@ Resources:
   TargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      Name: PROD-default
+      Name: tg-default-api
       VpcId: !Ref VPC
       Port: 8080
       Protocol: HTTP

@@ -16,6 +16,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
+                sh 'docker system prune -a -f'
                 sh './gradlew docker'
             }
         }
@@ -37,6 +38,11 @@ pipeline {
                     sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete -PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR -Pregion=$AWS_REGION'
                 }
             }
+        }
+        stage('Cleaning up') {
+          steps{
+            sh "docker rmi donascimentomarcelo/spring-aws:0.0.1-SNAPSHOT"
+          }
         }
     }
 }
