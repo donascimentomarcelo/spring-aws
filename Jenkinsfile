@@ -16,11 +16,11 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker system prune -af'
-                sh "docker container prune -af"
-                sh "docker image prune -af"
-                sh "docker network prune -af"
-                sh "docker volume prune -af"
+                sh 'docker system prune -a -f'
+                sh "docker container prune -a -f"
+                sh "docker image prune -a -f"
+                sh "docker network prune -a -f"
+                sh "docker volume prune -a -f"
                 sh './gradlew docker'
             }
         }
@@ -47,10 +47,10 @@ pipeline {
         stage('Cleaning up') {
           steps{
             sh "donascimentomarcelo/spring-aws:0.0.1-SNAPSHOT"
-            sh "docker container prune -af"
-            sh "docker image prune -af"
-            sh "docker network prune -af"
-            sh "docker volume prune -af"
+            sh "docker container prune -a -f"
+            sh "docker image prune -a -f"
+            sh "docker network prune -a -f"
+            sh "docker volume prune -a -f"
           }
         }
     }
