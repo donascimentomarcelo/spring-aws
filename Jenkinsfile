@@ -16,7 +16,11 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker system prune -a -f'
+                sh 'docker system prune -af'
+                sh "docker container prune -af"
+                sh "docker image prune -af"
+                sh "docker network prune -af"
+                sh "docker volume prune -af"
                 sh './gradlew docker'
             }
         }
@@ -35,13 +39,18 @@ pipeline {
             }
             steps {
                 withAWS(credentials: 'aws-credentials', region: env.AWS_REGION) {
-                    sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete -PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR -Pregion=$AWS_REGION'
+                    sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete -PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR -Pregion=$AWS_REGION --info --debug'
+//                     sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete -PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR -Pregion=$AWS_REGION --stacktrace'
                 }
             }
         }
         stage('Cleaning up') {
           steps{
-            sh "docker rmi donascimentomarcelo/spring-aws:0.0.1-SNAPSHOT"
+            sh "donascimentomarcelo/spring-aws:0.0.1-SNAPSHOT"
+            sh "docker container prune -af"
+            sh "docker image prune -af"
+            sh "docker network prune -af"
+            sh "docker volume prune -af"
           }
         }
     }
