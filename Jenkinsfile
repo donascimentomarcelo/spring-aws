@@ -36,13 +36,12 @@ pipeline {
             steps {
                 withAWS(credentials: 'aws-credentials', region: env.AWS_REGION) {
                     sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete -PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR -Pregion=$AWS_REGION --info --debug'
-//                     sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete -PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR -Pregion=$AWS_REGION --stacktrace'
                 }
             }
         }
         stage('Cleaning up') {
           steps{
-            sh "donascimentomarcelo/spring-aws:0.0.1-SNAPSHOT"
+            sh "docker rmi donascimentomarcelo/spring-aws:0.0.1-SNAPSHOT"
             sh 'docker system prune -a -f'
           }
         }

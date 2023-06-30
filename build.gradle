@@ -54,7 +54,7 @@ dockerRun {
 }
 
 cloudFormation {
-	stackName "$project.name-stack"
+	stackName "api-aws"
 	stackParams([
 			SubnetID: findProperty('subnetId') ?: '',
 			ServiceName: project.name,
