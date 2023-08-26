@@ -37,9 +37,14 @@ public class DevOpsBootstrap implements ApplicationListener<ContextRefreshedEven
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+
+        this.productRepository.deleteAll();
+        this.authorRepository.deleteAll();
+        this.productCategoryRepository.deleteAll();
+
         Author jt = new Author();
-        jt.setFirstName("John");
-        jt.setLastName("Thompson");
+        jt.setFirstName("Marcelo");
+        jt.setLastName("Sant'Anna");
         jt.setId(1);
         jt.setImage("instructor_jt.jpg");
 
@@ -88,6 +93,7 @@ public class DevOpsBootstrap implements ApplicationListener<ContextRefreshedEven
         springIntro.setPrice(new BigDecimal("0"));
         springIntro.getProductCategories().add(springIntroCat);
         springIntro.getProductCategories().add(springBootCat);
+        springIntro.setVersion(1);
 
         springIntro = productRepository.save(springIntro);
 
@@ -104,6 +110,7 @@ public class DevOpsBootstrap implements ApplicationListener<ContextRefreshedEven
         springCoreUltimate.setPrice(new BigDecimal("199"));
         springCoreUltimate.getProductCategories().add(springCoreCat);
         springCoreUltimate.getProductCategories().add(springBootCat);
+        springCoreUltimate.setVersion(5);
 
         springCoreUltimate = productRepository.save(springCoreUltimate);
 
@@ -117,8 +124,9 @@ public class DevOpsBootstrap implements ApplicationListener<ContextRefreshedEven
                 "My Introduction Spring Framework Tutorial is designed to give you an introduction to the Spring Framework. This  is written for beginners. Ideally before taking the , you should already have a foundation with the Java programming language. You don't need to be an expert in Java, but you should the basics of Object Oriented Programming with Java.\n" +
                 "\n" +
                 "You will learn what Dependency Injection is, and how Spring uses Inversion of Control to leverage Dependency Injection. Next in my , I will walk you step by step through building your very first Spring Framework application. I'll show you hot to use the Spring Initializer and Spring Boot to jumpstart your Spring Framework project. Ideally, you can follow along and create your own Spring project. I know it can be frustrating to follow along in a  and run into errors. So don't worry, I have the complete source code examples in Git for you to checkout and use.");
-        thymeleaf.setPrice(new BigDecimal("199"));
+        thymeleaf.setPrice(new BigDecimal("399"));
         thymeleaf.getProductCategories().add(thymeleafCat);
+        thymeleaf.setVersion(3);
 
         thymeleaf = productRepository.save(thymeleaf);
 
@@ -132,9 +140,10 @@ public class DevOpsBootstrap implements ApplicationListener<ContextRefreshedEven
                 "My Introduction Spring Framework Tutorial is designed to give you an introduction to the Spring Framework. This  is written for beginners. Ideally before taking the , you should already have a foundation with the Java programming language. You don't need to be an expert in Java, but you should the basics of Object Oriented Programming with Java.\n" +
                 "\n" +
                 "You will learn what Dependency Injection is, and how Spring uses Inversion of Control to leverage Dependency Injection. Next in my , I will walk you step by step through building your very first Spring Framework application. I'll show you hot to use the Spring Initializer and Spring Boot to jumpstart your Spring Framework project. Ideally, you can follow along and create your own Spring project. I know it can be frustrating to follow along in a  and run into errors. So don't worry, I have the complete source code examples in Git for you to checkout and use.");
-        springCore.setPrice(new BigDecimal("199"));
+        springCore.setPrice(new BigDecimal("499"));
         springCore.getProductCategories().add(springCoreCat);
         springCore.getProductCategories().add(springBootCat);
+        springCore.setVersion(2);
 
         springCore = productRepository.save(springCore);
 
@@ -148,9 +157,10 @@ public class DevOpsBootstrap implements ApplicationListener<ContextRefreshedEven
                 "My Introduction Spring Framework Tutorial is designed to give you an introduction to the Spring Framework. This  is written for beginners. Ideally before taking the , you should already have a foundation with the Java programming language. You don't need to be an expert in Java, but you should the basics of Object Oriented Programming with Java.\n" +
                 "\n" +
                 "You will learn what Dependency Injection is, and how Spring uses Inversion of Control to leverage Dependency Injection. Next in my , I will walk you step by step through building your very first Spring Framework application. I'll show you hot to use the Spring Initializer and Spring Boot to jumpstart your Spring Framework project. Ideally, you can follow along and create your own Spring project. I know it can be frustrating to follow along in a  and run into errors. So don't worry, I have the complete source code examples in Git for you to checkout and use.");
-        springCoreAdv.setPrice(new BigDecimal("199"));
+        springCoreAdv.setPrice(new BigDecimal("699"));
         springCoreAdv.getProductCategories().add(springCoreCat);
         springCoreAdv.getProductCategories().add(springBootCat);
+        springCoreAdv.setVersion(7);
 
         springCoreAdv = productRepository.save(springCoreAdv);
 
@@ -164,9 +174,10 @@ public class DevOpsBootstrap implements ApplicationListener<ContextRefreshedEven
                 "My Introduction Spring Framework Tutorial is designed to give you an introduction to the Spring Framework. This  is written for beginners. Ideally before taking the , you should already have a foundation with the Java programming language. You don't need to be an expert in Java, but you should the basics of Object Oriented Programming with Java.\n" +
                 "\n" +
                 "You will learn what Dependency Injection is, and how Spring uses Inversion of Control to leverage Dependency Injection. Next in my , I will walk you step by step through building your very first Spring Framework application. I'll show you hot to use the Spring Initializer and Spring Boot to jumpstart your Spring Framework project. Ideally, you can follow along and create your own Spring project. I know it can be frustrating to follow along in a  and run into errors. So don't worry, I have the complete source code examples in Git for you to checkout and use.");
-        springCoreDevOps.setPrice(new BigDecimal("199"));
+        springCoreDevOps.setPrice(new BigDecimal("999"));
         springCoreDevOps.getProductCategories().add(springCoreCat);
         springCoreDevOps.getProductCategories().add(springBootCat);
+        springCoreDevOps.setVersion(9);
 
         springCoreDevOps = productRepository.save(springCoreDevOps);
     }

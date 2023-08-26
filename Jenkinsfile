@@ -29,7 +29,7 @@ pipeline {
                 sh './gradlew dockerPush'
             }
         }
-        stage('Deploy to AWS') {
+        stage('Deploy') {
             environment {
                 DOCKER_HUB_LOGIN = credentials('docker-hub')
             }
@@ -41,7 +41,6 @@ pipeline {
         }
         stage('Cleaning up') {
           steps{
-            sh "docker rmi donascimentomarcelo/spring-aws:0.0.1-SNAPSHOT"
             sh 'docker system prune -a -f'
           }
         }
