@@ -86,7 +86,7 @@ Resources:
   Cluster:
     Type: AWS::ECS::Cluster
     Properties:
-      ClusterName: deployment-example-cluster
+      ClusterName: deployment-api-cluster
 
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
